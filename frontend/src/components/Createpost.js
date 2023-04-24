@@ -19,7 +19,7 @@ export default function Createpost() {
     // saving post to mongodb
     if (url) {
 
-      fetch("http://localhost:5000/createPost", {
+      fetch("http://localhost:5001/createPost", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -50,9 +50,9 @@ export default function Createpost() {
     console.log(body, image)
     const data = new FormData()
     data.append("file", image)
-    data.append("upload_preset", "insta-clone")
-    data.append("cloud_name", "cantacloud2")
-    fetch("https://api.cloudinary.com/v1_1/cantacloud2/image/upload", {
+    data.append("upload_preset", "UITAlumni")
+    data.append("cloud_name", "uitalumnisocialmedia")
+    fetch("https://api.cloudinary.com/v1_1/uitalumnisocialmedia/image/upload", {
       method: "post",
       body: data
     }).then(res => res.json())
@@ -101,7 +101,7 @@ export default function Createpost() {
               alt=""
             />
           </div>
-          <h5>Ramesh</h5>
+          <h5>{JSON.parse(localStorage.getItem("user")).name}</h5>
         </div>
         <textarea value={body} onChange={(e) => {
           setBody(e.target.value)

@@ -23,7 +23,7 @@ export default function ProfilePic({ changeprofile }) {
 
   const postPic = () => {
     // saving post to mongodb
-    fetch("http://localhost:5000/uploadProfilePic", {
+    fetch("http://localhost:5001/uploadProfilePic", {
       method: "put",
       headers: {
         "Content-Type": "application/json",

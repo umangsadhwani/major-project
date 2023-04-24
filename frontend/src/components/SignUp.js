@@ -31,7 +31,7 @@ export default function SignUp() {
     }
 
     // Sending data to server
-    fetch("http://localhost:5000/signup", {
+    fetch("http://localhost:5001/signup", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -74,7 +74,7 @@ export default function SignUp() {
               type="text"
               name="username"
               id="username"
-              placeholder="Username"
+              placeholder="Enrollment no"
               value={userName}
               onChange={(e) => { setUserName(e.target.value) }}
             />
