@@ -60,9 +60,16 @@ export default function SignUp() {
 
   return (
     <div className="signUp">
-      <div>
+      <div className="signupBox">
         <img src={rgpvlogo} alt="RGPV Logo" width={150} />
-        <h1>UIT RGPV Alumni</h1>
+        <h1
+          style={{
+            margin: "0 2rem",
+            fontSize: "2.5rem",
+          }}
+        >
+          UIT RGPV Alumni
+        </h1>
       </div>
       <div className="form-container">
         <div className="form">

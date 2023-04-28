@@ -5,8 +5,11 @@ img {
 
 .navbar {
   background: #ffffff;
-  margin-left: 80%;
   box-shadow: 1px 5px 5px #e0dcdc;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
 ul {
@@ -34,7 +37,9 @@ a {
   color: white;
   background: #db183c;
   border-radius: 15px;
-  margin-left: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
   transition: all 0.25s ease;
 }
 
