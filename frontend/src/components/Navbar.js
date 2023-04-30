@@ -6,11 +6,14 @@ import { LoginContext } from "../context/LoginContext";
 
 export default function Navbar({ login }) {
   const { setModalOpen } = useContext(LoginContext);
+
   const loginStatus = () => {
     const token = localStorage.getItem("jwt");
+
     if (login || token) {
       return [
         <>
+          <Link to="/">Home</Link>
           <Link to="/profile">
             <li>Profile</li>
           </Link>

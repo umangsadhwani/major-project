@@ -1,67 +1,61 @@
 import React, { useState, useEffect } from "react";
 import "./Createpost.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export default function Createpost() {
   const [body, setBody] = useState("");
-  const [image, setImage] = useState("")
-  const [url, setUrl] = useState("")
-  const navigate = useNavigate()
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+  const navigate = useNavigate();
 
   // Toast functions
-  const notifyA = (msg) => toast.error(msg)
-  const notifyB = (msg) => toast.success(msg)
-
+  const notifyA = (msg) => toast.error(msg);
+  const notifyB = (msg) => toast.success(msg);
 
   useEffect(() => {
-
     // saving post to mongodb
     if (url) {
-
       fetch("http://localhost:5001/createPost", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("jwt")
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
         body: JSON.stringify({
           body,
-          pic: url
-        })
-      }).then(res => res.json())
-        .then(data => {
+          pic: url,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
           if (data.error) {
-            notifyA(data.error)
+            notifyA(data.error);
           } else {
-            notifyB("Successfully Posted")
-            navigate("/")
+            notifyB("Successfully Posted");
+            navigate("/");
           }
         })
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err));
     }
-
-  }, [url])
-
+  }, [url]);
 
   // posting image to cloudinary
   const postDetails = () => {
-
-    console.log(body, image)
-    const data = new FormData()
-    data.append("file", image)
-    data.append("upload_preset", "UITAlumni")
-    data.append("cloud_name", "uitalumnisocialmedia")
+    console.log(body, image);
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "UITAlumni");
+    data.append("cloud_name", "uitalumnisocialmedia");
     fetch("https://api.cloudinary.com/v1_1/uitalumnisocialmedia/image/upload", {
       method: "post",
-      body: data
-    }).then(res => res.json())
-      .then(data => setUrl(data.url))
-      .catch(err => console.log(err))
-    console.log(url)
-
-  }
-
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => setUrl(data.url))
+      .catch((err) => console.log(err));
+    console.log(url);
+  };
 
   const loadfile = (event) => {
     var output = document.getElementById("output");
@@ -74,8 +68,17 @@ export default function Createpost() {
     <div className="createPost">
       {/* //header */}
       <div className="post-header">
-        <h4 style={{ margin: "3px auto" }}>Create New Post</h4>
-        <button id="post-btn" onClick={() => { postDetails() }}>Share</button>
+        <h4 style={{ margin: "8px auto", padding: "8px 0" }}>
+          Create New Post
+        </h4>
+        <button
+          id="post-btn"
+          onClick={() => {
+            postDetails();
+          }}
+        >
+          Share
+        </button>
       </div>
       {/* image preview */}
       <div className="main-div">
@@ -88,7 +91,7 @@ export default function Createpost() {
           accept="image/*"
           onChange={(event) => {
             loadfile(event);
-            setImage(event.target.files[0])
+            setImage(event.target.files[0]);
           }}
         />
       </div>
@@ -103,9 +106,13 @@ export default function Createpost() {
           </div>
           <h5>{JSON.parse(localStorage.getItem("user")).name}</h5>
         </div>
-        <textarea value={body} onChange={(e) => {
-          setBody(e.target.value)
-        }} type="text" placeholder="Write a caption...."></textarea>
+        <input
+          type="text"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          placeholder="Wrtie a Caption...."
+          className="inputCreatePost"
+        />
       </div>
     </div>
   );

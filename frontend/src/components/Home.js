@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
+  var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png";
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [comment, setComment] = useState("");
@@ -124,6 +124,14 @@ export default function Home() {
       });
   };
 
+  const makeCommentByEnter = (event, comment, id) => {
+    console.log("we are here");
+    event.preventDefault();
+    if (event.keyCode === 13) {
+      makeComment(comment, id);
+    }
+  };
+
   return (
     <div className="home">
       {/* card */}
@@ -200,6 +208,10 @@ export default function Home() {
                 className="comment"
                 onClick={() => {
                   makeComment(comment, posts._id);
+                }}
+                onKeyUp={(event) => {
+                  console.log("here ? ");
+                  makeCommentByEnter(event, comment, posts._id);
                 }}
               >
                 Post
