@@ -7,11 +7,29 @@ export default function Createpost() {
   const [body, setBody] = useState("");
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
+  const [user, setUser] = useState("");
   const navigate = useNavigate();
 
   // Toast functions
   const notifyA = (msg) => toast.error(msg);
   const notifyB = (msg) => toast.success(msg);
+
+  useEffect(() => {
+    fetch(
+      `http://localhost:5001/user/${
+        JSON.parse(localStorage.getItem("user"))._id
+      }`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((result) => {
+        setUser(result.user);
+      });
+  }, []);
 
   useEffect(() => {
     // saving post to mongodb
@@ -100,7 +118,11 @@ export default function Createpost() {
         <div className="card-header">
           <div className="card-pic">
             <img
-              src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+              src={
+                user.Photo
+                  ? user.Photo
+                  : "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+              }
               alt=""
             />
           </div>

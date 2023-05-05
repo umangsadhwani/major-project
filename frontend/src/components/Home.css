@@ -30,12 +30,15 @@
 .card-content {
   text-align: left;
   padding: 3px 10px;
+  overflow-y: scroll;
   border-bottom: 1px solid rgb(173, 173, 173);
 }
 
 .add-comment {
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: white;
 }
 
 .add-comment input {
@@ -46,11 +49,12 @@
 }
 
 .comment {
-  border: none;
   background-color: none;
   font-weight: bolder;
   cursor: pointer;
   color: #339ce3;
+  width: 40%;
+  height: 100%;
 }
 
 .material-symbols-outlined-red {
@@ -96,6 +100,7 @@
   height: inherit;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .comment-section {

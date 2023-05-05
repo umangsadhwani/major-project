@@ -3,9 +3,9 @@ import "./PostDetail.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function PostDetail({ item, toggleDetails }) {
+export default function PostDetail({ item, toggleDetails, user }) {
   const navigate = useNavigate();
-
+  console.log("we reached ? ");
   // Toast functions
   const notifyA = (msg) => toast.error(msg);
   const notifyB = (msg) => toast.success(msg);
@@ -42,11 +42,15 @@ export default function PostDetail({ item, toggleDetails }) {
           >
             <div className="card-pic">
               <img
-                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                src={
+                  user.Photo
+                    ? user.Photo
+                    : "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                }
                 alt=""
               />
             </div>
-            <h5>{item.postedBy.name}</h5>
+            <h5>{user.name}</h5>
             <div
               className="deletePost"
               onClick={() => {

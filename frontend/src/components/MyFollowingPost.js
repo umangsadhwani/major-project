@@ -15,6 +15,25 @@ export default function MyFolliwngPost() {
   const notifyA = (msg) => toast.error(msg);
   const notifyB = (msg) => toast.success(msg);
 
+  // useEffect(() => {
+  //   const getFollowing = async () => {
+  //     const { following = [] } = user;
+  //     const allFollowersPromises = following.map(async (id) => {
+  //       const res = await fetch(`http://localhost:5001/user/${id}`, {
+  //         headers: {
+  //           Authorization: "Bearer " + localStorage.getItem("jwt"),
+  //         },
+  //       });
+  //       const data = await res.json();
+  //       return data.user;
+  //     });
+  //     const allFollowers = await Promise.all(allFollowersPromises);
+  //     setShowAllFollowers(allFollowers);
+  //     setTitle("Following");
+  //     setIsModalTrue(true);
+  //   };
+  // })
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (!token) {
@@ -29,7 +48,7 @@ export default function MyFolliwngPost() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        console.log("res ", result);
         setData(result);
       })
       .catch((err) => console.log(err));

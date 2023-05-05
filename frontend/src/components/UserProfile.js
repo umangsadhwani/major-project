@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import PostDetail from "./PostDetail";
 import "./Profile.css";
+import Modal from "@material-ui/core/Modal";
 import { useParams } from "react-router-dom";
+import FollowModal from "./FollowModal";
 
 export default function UserProfie() {
   var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png";
@@ -9,6 +11,58 @@ export default function UserProfie() {
   const [isFollow, setIsFollow] = useState(false);
   const [user, setUser] = useState("");
   const [posts, setPosts] = useState([]);
+  // const [show, setShow] = useState(false);
+  const [showAllFollowers, setShowAllFollowers] = useState([]);
+  const [isModalTrue, setIsModalTrue] = useState(false);
+  const [changePic, setChangePic] = useState(false);
+  const [title, setTitle] = useState("");
+
+  // const toggleDetails = (posts) => {
+  //   if (show) {
+  //     setShow(false);
+  //   } else {
+  //     setShow(true);
+  //     setPosts(posts);
+  //   }
+  // };
+
+  const getFollowers = async () => {
+    const { followers = [] } = user;
+    const allFollowersPromises = followers.map(async (id) => {
+      const res = await fetch(`http://localhost:5001/user/${id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      });
+      const data = await res.json();
+      return data.user;
+    });
+    const allFollowers = await Promise.all(allFollowersPromises);
+    setShowAllFollowers(allFollowers);
+    setTitle("Followers");
+    setIsModalTrue(true);
+  };
+
+  const getFollowing = async () => {
+    const { following = [] } = user;
+    const allFollowersPromises = following.map(async (id) => {
+      const res = await fetch(`http://localhost:5001/user/${id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      });
+      const data = await res.json();
+      return data.user;
+    });
+    const allFollowers = await Promise.all(allFollowersPromises);
+    setShowAllFollowers(allFollowers);
+    setTitle("Following");
+    setIsModalTrue(true);
+  };
+
+  const handleClose = () => {
+    setIsModalTrue(false);
+  };
 
   // to follow user
   const followUser = (userId) => {
@@ -24,7 +78,6 @@ export default function UserProfie() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setIsFollow(true);
       });
   };
@@ -45,7 +98,6 @@ export default function UserProfie() {
         res.json();
       })
       .then((data) => {
-        console.log(data);
         setIsFollow(false);
       });
   };
@@ -58,7 +110,6 @@ export default function UserProfie() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         setUser(result.user);
         setPosts(result.post);
         if (
@@ -104,8 +155,18 @@ export default function UserProfie() {
           </div>
           <div className="profile-info" style={{ display: "flex" }}>
             <p>{posts.length} posts</p>
-            <p>{user.followers ? user.followers.length : "0"} followers</p>
-            <p>{user.following ? user.following.length : "0"} following</p>
+            <p
+              onClick={getFollowers}
+              style={{ color: "blue", cursor: "pointer" }}
+            >
+              {user.followers ? user.followers.length : "0"} followers
+            </p>
+            <p
+              onClick={getFollowing}
+              style={{ color: "blue", cursor: "pointer" }}
+            >
+              {user.following ? user.following.length : "0"} following
+            </p>
           </div>
         </div>
       </div>
@@ -119,22 +180,29 @@ export default function UserProfie() {
       />
       {/* Gallery */}
       <div className="gallery">
-        {posts.map((pics) => {
+        {posts?.map((pics) => {
           return (
             <img
               key={pics._id}
               src={pics.photo}
-              // onClick={() => {
-              //     toggleDetails(pics)
-              // }}
+              onClick={() => {
+                // toggleDetails(pics);
+              }}
               className="item"
             ></img>
           );
         })}
       </div>
-      {/* {show &&
-        <PostDetail item={posts} toggleDetails={toggleDetails} />
-      } */}
+
+      {/* {show && (
+        <PostDetail item={posts} user={user} toggleDetails={toggleDetails} />
+      )} */}
+
+      {isModalTrue && (
+        <Modal open={isModalTrue} onClose={handleClose}>
+          <FollowModal data={showAllFollowers} heading={title} />
+        </Modal>
+      )}
     </div>
   );
 }

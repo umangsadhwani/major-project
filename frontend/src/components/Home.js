@@ -30,7 +30,6 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         setData(result);
       })
       .catch((err) => console.log(err));
@@ -120,16 +119,7 @@ export default function Home() {
         setData(newData);
         setComment("");
         notifyB("Comment posted");
-        console.log(result);
       });
-  };
-
-  const makeCommentByEnter = (event, comment, id) => {
-    console.log("we are here");
-    event.preventDefault();
-    if (event.keyCode === 13) {
-      makeComment(comment, id);
-    }
   };
 
   return (
@@ -208,10 +198,6 @@ export default function Home() {
                 className="comment"
                 onClick={() => {
                   makeComment(comment, posts._id);
-                }}
-                onKeyUp={(event) => {
-                  console.log("here ? ");
-                  makeCommentByEnter(event, comment, posts._id);
                 }}
               >
                 Post
