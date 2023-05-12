@@ -88,11 +88,13 @@
   background-color: black;
   display: flex;
   align-items: center;
+  width: 80%;
 }
 
 .postPic img {
   object-fit: contain;
   width: 100%;
+  height: 100%;
 }
 
 .details {

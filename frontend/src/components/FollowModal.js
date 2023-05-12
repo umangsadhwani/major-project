@@ -9,12 +9,30 @@ const ModalContent = ({ data, heading }) => {
         {data.map((user) => (
           <li
             style={{
-              listStyle: "initial",
+              listStyle: "none",
             }}
           >
-            <Link to={`/profile/${user._id}`} style={{ color: "blue" }}>
-              {user.name}
-            </Link>
+            <div style={{}}>
+              <Link
+                to={`/profile/${user._id}`}
+                style={{
+                  color: "blue",
+                  display: "flex",
+                  alignItems: "center",
+                  margin: "0.5rem 0",
+                }}
+              >
+                <img
+                  src={user.Photo}
+                  width={"35px"}
+                  style={{
+                    borderRadius: "100%",
+                    padding: "0 12px 0 0",
+                  }}
+                />
+                {user.name}
+              </Link>
+            </div>
           </li>
         ))}
       </ul>
@@ -27,6 +45,7 @@ export default ModalContent;
 const ulStyle = {
   display: "block",
   margin: "0",
+  padding: "0",
 };
 
 const modalStyles = {

@@ -11,6 +11,7 @@ export default function Home() {
   const [comment, setComment] = useState("");
   const [show, setShow] = useState(false);
   const [item, setItem] = useState([]);
+  const [currPostPhoto, setCurrPostPhoto] = useState("");
 
   // Toast functions
   const notifyA = (msg) => toast.error(msg);
@@ -36,12 +37,13 @@ export default function Home() {
   }, []);
 
   // to show and hide comments
-  const toggleComment = (posts) => {
+  const toggleComment = (posts, imgSrc) => {
     if (show) {
       setShow(false);
     } else {
       setShow(true);
       setItem(posts);
+      setCurrPostPhoto(imgSrc);
     }
   };
 
@@ -176,7 +178,7 @@ export default function Home() {
               <p
                 style={{ fontWeight: "bold", cursor: "pointer" }}
                 onClick={() => {
-                  toggleComment(posts);
+                  toggleComment(posts, posts.postedBy.Photo);
                 }}
               >
                 View all comments
@@ -222,7 +224,11 @@ export default function Home() {
               >
                 <div className="card-pic">
                   <img
-                    src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                    src={
+                      currPostPhoto
+                        ? currPostPhoto
+                        : "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                    }
                     alt=""
                   />
                 </div>
