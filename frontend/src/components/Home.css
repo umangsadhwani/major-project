@@ -1,9 +1,22 @@
+.backgroundImg {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  width: 80%;
+  filter: blur(3px);
+}
+
 .card {
   max-width: 500px;
   height: max-content;
   margin: 25px auto;
   border: 1px solid rgb(173, 173, 173);
   border-radius: 5px;
+  z-index: 200;
+  background-color: white;
 }
 
 .card-header {

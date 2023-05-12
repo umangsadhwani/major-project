@@ -16,6 +16,18 @@ export default function Profie() {
   const [isModalTrue, setIsModalTrue] = useState(false);
   const [changePic, setChangePic] = useState(false);
   const [title, setTitle] = useState("");
+  const [branch, setBranch] = useState("");
+  const [grad, setGrad] = useState();
+
+  const COMP_MAP = {
+    CS: "Computer Science Engineering",
+    EC: "Electornics and Commpunication Engineering",
+    IT: "Information Technology",
+    ME: "Mechanical Engineering",
+    CE: "Civil Engineering",
+    PC: "Petro-Chemical Engineering",
+    AU: "Automation Engineering",
+  };
 
   const toggleDetails = (posts) => {
     if (show) {
@@ -37,6 +49,13 @@ export default function Profie() {
   const handleClose = () => {
     setIsModalTrue(false);
   };
+
+  useEffect(() => {
+    const branch = user?.userName?.slice(4, 6)?.toUpperCase();
+    setBranch(COMP_MAP[branch]);
+    const gradYear = +user?.userName?.slice(6, 8);
+    setGrad(gradYear);
+  }, [user]);
 
   useEffect(() => {
     fetch(
@@ -104,7 +123,18 @@ export default function Profie() {
         </div>
         {/* profile-data */}
         <div className="pofile-data">
-          <h1>{JSON.parse(localStorage.getItem("user")).name}</h1>
+          <h1
+            style={{
+              paddingLeft: "0",
+              marginLeft: "0",
+              textAlign: "initial",
+            }}
+          >
+            {JSON.parse(localStorage.getItem("user")).name}
+          </h1>
+          <p>
+            {branch}'{grad}
+          </p>
           <div className="profile-info" style={{ display: "flex" }}>
             <p>{pic ? pic.length : "0"} posts</p>
             <p

@@ -11,20 +11,39 @@ export default function UserProfie() {
   const [isFollow, setIsFollow] = useState(false);
   const [user, setUser] = useState("");
   const [posts, setPosts] = useState([]);
-  // const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
   const [showAllFollowers, setShowAllFollowers] = useState([]);
   const [isModalTrue, setIsModalTrue] = useState(false);
   const [changePic, setChangePic] = useState(false);
   const [title, setTitle] = useState("");
+  const [branch, setBranch] = useState("");
+  const [grad, setGrad] = useState();
 
-  // const toggleDetails = (posts) => {
-  //   if (show) {
-  //     setShow(false);
-  //   } else {
-  //     setShow(true);
-  //     setPosts(posts);
-  //   }
-  // };
+  const COMP_MAP = {
+    CS: "Computer Science Engineering",
+    EC: "Electornics and Commpunication Engineering",
+    IT: "Information Technology",
+    ME: "Mechanical Engineering",
+    CE: "Civil Engineering",
+    PC: "Petro-Chemical Engineering",
+    AU: "Automation Engineering",
+  };
+
+  useEffect(() => {
+    const branch = user?.userName?.slice(4, 6)?.toUpperCase();
+    setBranch(COMP_MAP[branch]);
+    const gradYear = +user?.userName?.slice(6, 8);
+    setGrad(gradYear);
+  }, [user]);
+
+  const toggleDetails = (posts) => {
+    if (show) {
+      setShow(false);
+    } else {
+      setShow(true);
+      setPosts(posts);
+    }
+  };
 
   const getFollowers = async () => {
     const { followers = [] } = user;
@@ -153,6 +172,9 @@ export default function UserProfie() {
               {isFollow ? "Unfollow" : "Follow"}
             </button>
           </div>
+          <p style={{ textAlign: "initial" }}>
+            {branch}'{grad}
+          </p>
           <div className="profile-info" style={{ display: "flex" }}>
             <p>{posts.length} posts</p>
             <p
@@ -173,7 +195,6 @@ export default function UserProfie() {
       <hr
         style={{
           width: "90%",
-
           opacity: "0.8",
           margin: "25px auto",
         }}
@@ -186,7 +207,7 @@ export default function UserProfie() {
               key={pics._id}
               src={pics.photo}
               onClick={() => {
-                // toggleDetails(pics);
+                toggleDetails(pics);
               }}
               className="item"
             ></img>
@@ -194,9 +215,9 @@ export default function UserProfie() {
         })}
       </div>
 
-      {/* {show && (
+      {show && (
         <PostDetail item={posts} user={user} toggleDetails={toggleDetails} />
-      )} */}
+      )}
 
       {isModalTrue && (
         <Modal open={isModalTrue} onClose={handleClose}>

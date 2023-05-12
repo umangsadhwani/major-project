@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import logo from "../img/logo.png";
+import rgpvlogo from "../img/rgpvlogo.jpg";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
@@ -43,8 +43,16 @@ export default function Navbar({ login }) {
   };
 
   return (
-    <div className="navbar">
-      <ul className="nav-menu">{loginStatus()}</ul>
-    </div>
+    <>
+      <div className="navbar">
+        <img src={rgpvlogo} width="40px" style={logoStyle} />
+        <ul className="nav-menu">{loginStatus()}</ul>
+      </div>
+    </>
   );
 }
+
+const logoStyle = {
+  position: "absolute",
+  left: "20px",
+};

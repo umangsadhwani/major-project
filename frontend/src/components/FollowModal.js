@@ -13,8 +13,8 @@ const ModalContent = ({ data, heading }) => {
             }}
           >
             <div style={{}}>
-              <Link
-                to={`/profile/${user._id}`}
+              <a
+                href={`/profile/${user._id}`}
                 style={{
                   color: "blue",
                   display: "flex",
@@ -24,6 +24,7 @@ const ModalContent = ({ data, heading }) => {
               >
                 <img
                   src={user.Photo}
+                  alt={"user"}
                   width={"35px"}
                   style={{
                     borderRadius: "100%",
@@ -31,7 +32,7 @@ const ModalContent = ({ data, heading }) => {
                   }}
                 />
                 {user.name}
-              </Link>
+              </a>
             </div>
           </li>
         ))}

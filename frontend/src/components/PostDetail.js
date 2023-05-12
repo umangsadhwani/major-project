@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PostDetail.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function PostDetail({ item, toggleDetails, user }) {
   const navigate = useNavigate();
+  const [comment, setComment] = useState("");
+
+  // const makeComment = (text, id) => {
+  //   fetch("http://localhost:5001/comment", {
+  //     method: "put",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + localStorage.getItem("jwt"),
+  //     },
+  //     body: JSON.stringify({
+  //       text: text,
+  //       postId: id,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       const newData = data.map((posts) => {
+  //         if (posts._id == result._id) {
+  //           return result;
+  //         } else {
+  //           return posts;
+  //         }
+  //       });
+  //       setData(newData);
+  //       setComment("");
+  //       notifyB("Comment posted");
+  //     });
+  // };
+
   console.log("we reached ? ");
   // Toast functions
   const notifyA = (msg) => toast.error(msg);
@@ -90,17 +119,17 @@ export default function PostDetail({ item, toggleDetails, user }) {
             <input
               type="text"
               placeholder="Add a comment"
-              //   value={comment}
-              //   onChange={(e) => {
-              //     setComment(e.target.value);
-              //   }}
+              value={comment}
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
             />
             <button
               className="comment"
-              //   onClick={() => {
-              //     makeComment(comment, item._id);
-              //     toggleComment();
-              //   }}
+              // onClick={() => {
+              //   makeComment(comment, item._id);
+              //   toggleComment();
+              // }}
             >
               Post
             </button>
