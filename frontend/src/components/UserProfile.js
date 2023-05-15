@@ -207,7 +207,7 @@ export default function UserProfie() {
               key={pics._id}
               src={pics.photo}
               onClick={() => {
-                toggleDetails(pics);
+                // toggleDetails(pics);
               }}
               className="item"
             ></img>
