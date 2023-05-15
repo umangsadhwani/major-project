@@ -303,6 +303,7 @@ export default function Home() {
                         >
                           {comment.postedBy.name}{" "}
                         </span>
+
                         <span className="commentText">{comment.comment}</span>
                       </p>
                     );
