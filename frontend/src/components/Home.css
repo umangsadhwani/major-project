@@ -1,12 +1,65 @@
-.backgroundImg {
+.home {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+}
+
+.leftSection {
+  border: 1px solid black;
+  width: 450px;
+  margin-top: 25px;
+  margin-left: 5px;
+  max-height: 1000px;
+  overflow-y: scroll;
+  position: relative;
+  position: sticky;
+  top: 0;
+}
+
+.leftSection > ul {
+  list-style-type: circle;
+  display: block;
+  padding: 0;
   margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  width: 80%;
-  filter: blur(3px);
+}
+
+.leftSection > ul > li {
+  margin: 20px 0;
+}
+
+.leftSection > ul > li > a:hover {
+  color: blue;
+}
+
+.rightSection {
+  border: 1px solid black;
+  width: 450px;
+  margin-top: 25px;
+  margin-right: 5px;
+  max-height: 1000px;
+  overflow-y: scroll;
+  position: sticky;
+  top: 0;
+}
+
+.rightSection > ul {
+  list-style-type: circle;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.rightSection > ul > li {
+  margin: 20px 0;
+}
+
+.rightSection > ul > li > a:hover {
+  color: blue;
+}
+
+.homeContainer {
+  width: 70%;
 }
 
 .card {

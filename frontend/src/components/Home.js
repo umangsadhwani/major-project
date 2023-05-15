@@ -3,7 +3,7 @@ import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import DEP_IMG from "../img/comp_science_dep.jpg";
+import DEFAULT_IMAGE from "../img/cf.jpg";
 
 export default function Home() {
   var picLink = "https://cdn-icons-png.flaticon.com/128/3177/3177440.png";
@@ -12,6 +12,7 @@ export default function Home() {
   const [comment, setComment] = useState("");
   const [show, setShow] = useState(false);
   const [item, setItem] = useState([]);
+  const [userList, setUserList] = useState([]);
   const [currPostPhoto, setCurrPostPhoto] = useState("");
 
   // Toast functions
@@ -33,6 +34,20 @@ export default function Home() {
       .then((res) => res.json())
       .then((result) => {
         setData(result);
+      })
+      .catch((err) => console.log(err));
+
+    // fetching all users
+    fetch("http://localhost:5001/allusers", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        ContentType: "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("res ", result);
+        setUserList(result);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -127,7 +142,43 @@ export default function Home() {
 
   return (
     <div className="home">
-      <img src={DEP_IMG} className="backgroundImg" />
+      <div className="leftSection">
+        <h2
+          style={{
+            position: "sticky",
+            top: 0,
+            backgroundColor: "white",
+            padding: "10px 0",
+          }}
+        >
+          People you may know..{" "}
+        </h2>
+        <ul>
+          {userList.map((user) => {
+            return (
+              <li
+                key={`${user.name} + 1`}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src={user.Photo ? user.Photo : DEFAULT_IMAGE}
+                  alt={"user"}
+                  width={"35px"}
+                  style={{
+                    borderRadius: "100%",
+                    padding: "0 12px 0 0",
+                  }}
+                />
+                <a href={`/profile/${user._id}`}>{user.name}</a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <div className="homeContainer">
         {/* card */}
         {data.map((posts) => {
@@ -299,6 +350,24 @@ export default function Home() {
             </div>
           </div>
         )}
+      </div>
+      <div className="rightSection">
+        <h2>Important Links</h2>
+        <ul>
+          <li>
+            <a href="https://www.linkedin.com/company/training-and-placement-cell-uitrgpv-bhopal/?originalSubdomain=in">
+              RGPV - TNP Linkedin
+            </a>
+          </li>
+          <li>
+            <a href="https://www.uitrgpv.ac.in/">UIT-RGPV Official Website</a>
+          </li>
+          <li>
+            <a href="https://www.uitrgpv.ac.in/theinstitute/placementrecords.aspx">
+              Year Wise Placement Data
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
