@@ -15,7 +15,6 @@
   position: relative;
   position: sticky;
   top: 0;
-  z-index: -1;
 }
 
 .leftSection > ul {
@@ -42,7 +41,6 @@
   overflow-y: scroll;
   position: sticky;
   top: 0;
-  z-index: -1;
 }
 
 .rightSection > ul {
@@ -139,6 +137,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
   background-color: rgba(16, 13, 13, 0.4);
 }
 
@@ -171,13 +170,15 @@
   display: flex;
   flex-direction: column;
   background-color: white;
+  z-index: 10;
 }
 
 .comment-section {
   flex-grow: 4;
   text-align: left;
   margin-left: 10px;
-  z-index: 1000;
+  z-index: 2;
+  background-color: white;
 }
 
 .close-comment {

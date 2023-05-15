@@ -352,6 +352,7 @@ export default function Home() {
           </div>
         )}
       </div>
+
       <div className="rightSection">
         <h2>Important Links</h2>
         <ul>
