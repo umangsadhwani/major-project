@@ -54,7 +54,8 @@ export default function SignIn() {
     <div className="signIn">
       <div>
         <div className="loginForm">
-          <img className="signUpLogo" src={logo} alt="" />
+          {/* <img className="signUpLogo" src={logo} alt="" /> */}
+          <h1>Sign In</h1>
           <div>
             <input
               type="email"
