@@ -5,7 +5,6 @@
   border-radius: 5px;
   background-color: white;
   box-shadow: rgba(40, 42, 44, 0.2) 0px 8px 24px;
-
 }
 
 .inputCreatePost {
@@ -18,11 +17,16 @@
 }
 .post-header {
   display: flex;
+  position: relative;
 }
 
 #post-btn {
+  position: absolute;
+  right: 0;
+  top: 5px;
   margin: 5px;
   width: 20%;
+  height: 30px;
   border: none;
   color: white;
   background-color: #339ce3;
@@ -31,10 +35,10 @@
   border-radius: 30px;
 }
 
-#post-btn:hover{
+#post-btn:hover {
   color: #339ce3;
   background-color: white;
-  border:1px solid  #339ce3;
+  border: 1px solid #339ce3;
 }
 
 .details {
