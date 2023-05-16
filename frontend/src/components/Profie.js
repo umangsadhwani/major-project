@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PostDetail from "./PostDetail";
 import "./Profile.css";
-import Modal from "@material-ui/core/Modal";
+import Modal from "@mui/material/Modal";
 import { Link } from "react-router-dom";
 import ProfilePic from "./ProfilePic";
 import FollowModal from "./FollowModal";

@@ -1,11 +1,17 @@
 .profile {
   max-width: 600px;
   margin: 10px auto;
+  margin-top: 2%;
+  box-shadow: rgba(40, 42, 44, 0.2) 0px 8px 24px;
+  height: 80vh;
+  background-color: white;
 }
 
 .profile-frame {
   display: flex;
   justify-content: space-evenly;
+
+  padding: 2%;
 }
 
 .profile-pic {
@@ -20,6 +26,7 @@
 
 .profile-data {
   text-align: left;
+ 
 }
 
 .profile-info p {

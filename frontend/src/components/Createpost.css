@@ -1,12 +1,16 @@
 .createPost {
   max-width: 500px;
   margin: 40px auto;
-  border: 1px solid rgb(173, 173, 173);
+  /* border: 1px solid rgb(173, 173, 173); */
   border-radius: 5px;
+  background-color: white;
+  box-shadow: rgba(40, 42, 44, 0.2) 0px 8px 24px;
+
 }
 
 .inputCreatePost {
   min-height: 30px;
+  border: none;
 }
 
 .main-div {
@@ -17,11 +21,20 @@
 }
 
 #post-btn {
+  margin: 5px;
+  width: 20%;
   border: none;
-  color: #339ce3;
-  background: none;
+  color: white;
+  background-color: #339ce3;
   font-weight: bolder;
   cursor: pointer;
+  border-radius: 30px;
+}
+
+#post-btn:hover{
+  color: #339ce3;
+  background-color: white;
+  border:1px solid  #339ce3;
 }
 
 .details {

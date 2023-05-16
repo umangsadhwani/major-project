@@ -230,6 +230,7 @@ export default function Home() {
                 <p>{posts.likes.length} Likes</p>
                 <p>{posts.body} </p>
                 <p
+                className="vlc"
                   style={{ fontWeight: "bold", cursor: "pointer" }}
                   onClick={() => {
                     toggleComment(posts, posts.postedBy.Photo);
