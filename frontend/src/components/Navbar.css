@@ -13,6 +13,10 @@ img {
   margin-bottom: 4px;
 }
 
+.nav-mobile{
+  display: none;
+}
+
 ul {
   display: flex;
   align-items: baseline;
@@ -47,4 +51,24 @@ a {
 .primaryBtn:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px -10px rgba(219, 24, 44, 0.6);
+}
+
+@media screen and (max-width:800px){
+  #rgpv-logo{
+    display: none;
+  }
+
+  .nav-menu{
+    display: none;
+  }
+  .nav-mobile{
+    padding-top: 60px;
+    padding-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    z-index: 100;
+    background-color: white;
+  }
 }
