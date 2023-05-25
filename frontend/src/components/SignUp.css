@@ -65,3 +65,28 @@ input {
   border-radius: 10%;
   margin-left: 6rem;
 }
+
+
+@media screen and (max-width:800px) {
+
+  .signUp{
+    display: flex;
+    flex-direction: column;
+  }
+  .signupBox{
+    width: 100%;
+    margin-top: 60px;
+  }
+
+  .form-container{
+    width: 100%;
+  }
+
+  .form{
+    margin: 10px;
+  }
+
+  .form2{
+    margin:10px;
+  }
+}

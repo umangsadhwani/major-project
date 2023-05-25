@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import rgpvlogo from "../img/rgpvlogo.jpg";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../context/LoginContext";
 
 export default function Navbar({ login }) {
+
   const { setModalOpen } = useContext(LoginContext);
 
   const loginStatusMobile = () => {
